@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/tdobrovolny/ansible-role-autoupdate.svg?branch=master)](https://travis-ci.org/tdobrovolny/ansible-role-autoupdate)
+
 autoupdate
 ==========
 
