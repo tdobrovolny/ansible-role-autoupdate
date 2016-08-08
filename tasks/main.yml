@@ -18,13 +18,15 @@
 - name: Check if anything needs autoremoving with apt
   shell: apt-get -y --dry-run autoremove | grep -q "0 to remove" warn=no
   register: check_autoremove
-  ignore_errors: True
-  changed_when: False
+  changed_when: check_autoremove.rc == 1
+  failed_when: check_autoremove.rc > 1
   always_run: True
   when: ansible_pkg_mgr == "apt" and autoupdate_apt_result['changed'] == true
 
 - name: Autoremove unused packages with apt
   command: apt-get -y autoremove warn=no
+  register: autoremove_result
+  changed_when: "'0 to remove' not in autoremove_result.stdout"
   when: ansible_pkg_mgr == "apt" and autoupdate_apt_result['changed'] == true and check_autoremove.rc != 0
 
 - name: dnf updates result
