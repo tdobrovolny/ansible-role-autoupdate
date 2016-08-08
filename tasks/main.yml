@@ -21,13 +21,13 @@
   changed_when: check_autoremove.rc == 1
   failed_when: check_autoremove.rc > 1
   always_run: True
-  when: ansible_pkg_mgr == "apt" and autoupdate_apt_result['changed'] == true
+  when: ansible_pkg_mgr == "apt"
 
 - name: Autoremove unused packages with apt
   command: apt-get -y autoremove warn=no
   register: autoremove_result
   changed_when: "'0 to remove' not in autoremove_result.stdout"
-  when: ansible_pkg_mgr == "apt" and autoupdate_apt_result['changed'] == true and check_autoremove.rc != 0
+  when: ansible_pkg_mgr == "apt" and check_autoremove|changed
 
 - name: dnf updates result
   # debug: msg={{ autoupdate_dnf_result['msg'] }}
