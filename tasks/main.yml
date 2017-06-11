@@ -4,16 +4,22 @@
   dnf: name=* state=latest
   when: ansible_pkg_mgr == "dnf"
   register: autoupdate_dnf_result
+  async: 3600
+  poll: 3
 
 - name: Update all packages - yum
   yum: name=* update_cache=yes state=latest
   when: ansible_pkg_mgr == "yum"
   register: autoupdate_yum_result
+  async: 3600
+  poll: 3
 
 - name: Update all packages - apt
   apt: update_cache=yes upgrade=dist autoremove=yes cache_valid_time=300 state=latest
   when: ansible_pkg_mgr == "apt"
   register: autoupdate_apt_result
+  async: 3600
+  poll: 3
 
 - name: Check if anything needs autoremoving with apt
   shell: apt-get -y --dry-run autoremove | grep -q "0 to remove" warn=no
@@ -28,6 +34,8 @@
   register: autoupdate_autoremove_result
   changed_when: "'0 to remove' not in autoupdate_autoremove_result.stdout"
   when: ansible_pkg_mgr == "apt" and autoupdate_check_autoremove|changed
+  async: 3600
+  poll: 3
 
 - name: dnf updates result
   # debug: msg={{ autoupdate_dnf_result['msg'] }}
