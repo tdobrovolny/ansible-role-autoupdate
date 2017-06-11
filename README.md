@@ -37,7 +37,7 @@ License
 
 BSD
 
-Author Information
-------------------
+Authors
+-------
 
-Tomas Dobrovolny - sdobrtomas@gmail.com - https://github.com/tdobrovolny
+View [AUTHORS](./AUTHORS.txt) for a list contributors to this role. Thanks everyone!
