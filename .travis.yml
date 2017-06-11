@@ -6,6 +6,7 @@ python: "2.7"
 sudo: false
 
 env:
+  - ANSIBLE_VERSION=git
   - ANSIBLE_VERSION=latest
   - ANSIBLE_VERSION=2.3.1.0
   - ANSIBLE_VERSION=2.3.0.0
@@ -40,7 +41,7 @@ addons:
 
 install:
   # Install ansible
-  - if [ "$ANSIBLE_VERSION" = "latest" ]; then pip install ansible; else pip install ansible==$ANSIBLE_VERSION; fi
+  - if [ "$ANSIBLE_VERSION" = "latest" ]; then pip install ansible; elif [ "$ANSIBLE_VERSION" = "git" ]; then pip install git+https://github.com/ansible/ansible.git ; else pip install ansible==$ANSIBLE_VERSION; fi
 
   # Check ansible version
   - ansible --version
