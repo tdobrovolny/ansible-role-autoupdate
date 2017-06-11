@@ -35,7 +35,7 @@ Example Playbook
 License
 -------
 
-BSD
+BSD-3-Clause - see [LICENSE](./LICENSE.txt)
 
 Authors
 -------
