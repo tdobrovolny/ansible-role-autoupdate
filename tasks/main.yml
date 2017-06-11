@@ -26,7 +26,6 @@
   register: autoupdate_check_autoremove
   changed_when: autoupdate_check_autoremove.rc == 1
   failed_when: autoupdate_check_autoremove.rc > 1
-  always_run: True
   when: ansible_pkg_mgr == "apt"
 
 - name: Autoremove unused packages with apt
