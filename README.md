@@ -23,7 +23,7 @@ This role does not use settable variables.
 Dependencies
 ------------
 
-This role does not depand on any role.
+This role does not depend on any role.
 
 Example Playbook
 ----------------
